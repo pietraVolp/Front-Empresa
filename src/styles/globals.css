@@ -1,0 +1,13 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Arquivo para criar variaveis padronizadas  */
+
+:root {
+  --background: #ffffff;
+  --foreground: #171717;
+  --azulprincipal: #0174DE;
+  --azulescuro: #2954C7;
+  --cinza: #A09C9C;
+}
