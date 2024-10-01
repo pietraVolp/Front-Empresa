@@ -11,7 +11,7 @@ export default function NavBarCategory({category, images, title}){
         let linkClass = 'flex items-center gap-4'
         const pathname = usePathname()
         if (pathname == category){
-            linkClass += ' bg-white/10 rounded'
+            linkClass += ' bg-[--navdestaque] rounded'
         }        
         return linkClass
     }
