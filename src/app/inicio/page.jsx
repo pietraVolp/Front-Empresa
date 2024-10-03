@@ -14,23 +14,14 @@ export default function Inicio() {
                     {/* Div para o inupt e img  */}
                     <div className="fixed  right-4">
                 <div className="relative">
-                    <input 
-                        type="text" 
-                        placeholder="Pesquisar..."
-                        className="bg-[--navempresa] rounded-lg pl-3 pr-10 py-2 border focus:border-blue-500 focus:bg-blue-50 transition-all" 
+                    <input type="text" placeholder="Pesquisar..."className="bg-[--navempresa] rounded-lg pl-3 pr-10 py-2 border focus:border-blue-500 focus:bg-blue-50 transition-all" 
                     />
                     <Image 
-                        src="/img/lupa.png" // Substitua pelo caminho correto da sua imagem
-                        alt="Lupa"
-                        width={20} // Ajuste conforme necessário
-                        height={20} // Ajuste conforme necessário
-                        className="absolute right-3 top-1/2 transform -translate-y-1/2"
+                        src="/img/lupa.png" imagemalt="Lupa width={20}" height={20} className="absolute right-3 top-1/2 transform -translate-y-1/2"
                     />
                 </div>
             </div>
 
-
-            {/* Div para exibir o geral de consultas disponíveis */}
             <div>
                 <h1>Consultas</h1>
             </div>
@@ -47,3 +38,6 @@ export default function Inicio() {
         </div>
     );
 }
+
+
+

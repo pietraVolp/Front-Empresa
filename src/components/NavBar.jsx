@@ -18,21 +18,23 @@ import NavBarCategory from './NavBarCategory';
 
 const NavBar = () => {
     return (
-        <div className="bg-[--azulprincipal] text-white w-64 min-h-screen flex flex-col py-6 px-4">
+        <div className="bg-[--navdestaque] text-white w-64 min-h-screen flex flex-col py-6 px-4">
             {/* Logo Vital+ */}
-            <div className="top-0">
-                <img className="h-[60px]" src="/img/logo.png" alt="Logo" />
+            <div className="top-0 flex">
+                <img className="h-[100px]" src="/img/logo.png" alt="Logo" />
+                <h1 className="text-3xl mt-10">Vital+</h1>
             </div>
 
     
-            <ul className="mt-[8vh] " id="categoria">
+            <ul className="mt-[1px] pt-20 " id="categoria">
                 {/* Links da NavBar */}
 
-                <NavBarCategory category={"/info-clinica"} images={infoImg} title={"Nome da Cliníca"} />
+                <NavBarCategory category={"/info-clinica"} images={infoImg} title={"Nome da Cliníca"}  />
                 <NavBarCategory category={"/inicio"} images={inicioImg} title={"Ínicio"} />
                 <NavBarCategory category={"/consultas"} images={consultaImg} title={"Consultas"} />
                 <NavBarCategory category={"/doutores"} images={doutorImg} title={"Doutores"} />
                 <NavBarCategory category={"/notificacoes"} images={notificacoesImg} title={"Notificações"} />
+                
 
 
 

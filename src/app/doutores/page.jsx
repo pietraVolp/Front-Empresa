@@ -7,7 +7,8 @@ export default function Inicio() {
             <NavBarLayout>
 
                 <div className="flex-1 p-4">
-                    {/* <h1>Estou na Home</h1> */}
+                <h1 className="text-4xl font-bold text-blue-900 p-10">DOUTORES CADASTRADOS</h1>
+
 
 
 

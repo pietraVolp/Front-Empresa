@@ -148,7 +148,7 @@ const Cadastro = () => {
                     {/* Bairro */}
 
                  
-                    <div className="ml-10">
+                    <div className="ml-10 mt-[-45px]">
                         <label htmlFor="bairro" className="block text-stone-500 text-base font-sans mb-1 text-lg">Bairro</label>
                         <input 
                             type="text" 
