@@ -12,23 +12,24 @@ export default function Inicio() {
 
 
                     {/* Div para o inupt e img  */}
-                    <div className="fixed  right-4">
-                <div className="relative">
-                    <input type="text" placeholder="Pesquisar..."className="bg-[--navempresa] rounded-lg pl-3 pr-10 py-2 border focus:border-blue-500 focus:bg-blue-50 transition-all" 
+                    <div className=" ">
+                
+
+                    <div className="">
+                    <input type="text" placeholder="Pesquisar..."className="bg-[--navempresa] pl-3 pr-10 py-2 ml-[60vh]  mt-[50px] rounded-full w-96 h-14 border focus:border-blue-900 focus:bg-blue-5 transition-all" 
                     />
-                    <Image 
-                        src="/img/lupa.png" imagemalt="Lupa width={20}" height={20} className="absolute right-3 top-1/2 transform -translate-y-1/2"
-                    />
-                </div>
+                   
+                    </div>
+
             </div>
 
             <div>
-                <h1>Consultas</h1>
+                <h1 className="text-2xl font-bold text-[--font] p-10" >CONSULTAS</h1>
             </div>
 
             {/* Div para exibir a galeria de vídeo */}
             <div>
-                <h1>Galeria</h1>
+                <h1  className="text-2xl font-bold text-[--font] p-10" >GALERIA</h1>
             </div>
 
 
