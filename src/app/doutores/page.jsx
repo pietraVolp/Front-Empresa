@@ -1,7 +1,13 @@
+"use client"
+
 import NavBarLayout from "@/components/layout/NavBarLayout";
 import Image from "next/image"; // Ajuste o caminho conforme necessário
+import Modal from "@/components/ConsultaModal";
+import {useState } from "react";
 
-export default function Inicio() {
+export default function Consulta() {
+    const [openModal, setOpenModal] = useState(false)
+
     return (
         <div className="flex flex-col">
             <NavBarLayout>
@@ -25,10 +31,12 @@ export default function Inicio() {
                     {/* Div para o botao cadastrar*/}
 
                  <div>
-                 <button className="bg-[--font] w-[25vh] h-[5vh] rounded-full ml-[130vh] mt-[10vh]">
+                 <button onClick={() => setOpenModal(true)} className="bg-[--font] w-[25vh] h-[5vh] rounded-full ml-[130vh] mt-[10vh]">
                         <h1 className="text-white font-bold" >CADASTRAR DOUTORES +</h1>
                 </button>
                  </div>
+
+                 <Modal isOpen={openModal} setModalOpen={() => setOpenModal(!openModal)}/>
 
 
 
