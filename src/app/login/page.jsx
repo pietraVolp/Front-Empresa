@@ -3,6 +3,7 @@
 import React, { useState } from 'react';
 import '../../js/login.js';
 
+
 const Login = () => {
   const [cnpj, setCnpj] = useState('');
   const [senha, setSenha] = useState('');
@@ -26,10 +27,10 @@ const Login = () => {
   return (
     <div className="bg-gradient-to-r from-blue-700 to-blue-300 min-h-screen flex flex-col items-center justify-center">
       <div>
-        <img src="./img/fundo-cadastro.png" alt="Fundo" className="w-full relative" />
+        <img src="./img/fundo-cadastro.png" alt="Fundo" className=" mt-[-500px] w-full relative" />
       </div>
 
-      <div className="bg-blue-300/75 w-2/6 h-auto items-center rounded-lg mt-[-350px] absolute">
+      <div className="bg-blue-300/75 w-2/6 h-auto items-center rounded-lg mt-[350px] absolute">
         <div className="ml-52 mt-10 flex">
           <img src="./img/logo.png" alt="Logo" />
           <h2 className="font-sans text-5xl text-white mt-10">Vital+</h2>
@@ -41,7 +42,7 @@ const Login = () => {
         </div>
 
         <div className="mt-16 ml-32">
-          <label htmlFor="cnpj" className="block text-white text-base font-sans mb-2 text-xl">
+          <label htmlFor="cnpj" id='cnpj' className="block text-white text-base font-sans mb-2 text-xl">
             CNPJ
           </label>
           <input
@@ -56,7 +57,7 @@ const Login = () => {
         </div>
 
         <div className="mt-14 ml-32">
-          <label htmlFor="senha" className="block text-white text-base font-sans mb-2 text-xl">
+          <label htmlFor="senha" id='senha' className="block text-white text-base font-sans mb-2 text-xl">
             SENHA
           </label>
           <input

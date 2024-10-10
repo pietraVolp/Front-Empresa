@@ -25,7 +25,7 @@ const validarLogin = async (id) => {
       if (response.ok) {
         if (result.status_code === 200) {
           localStorage.setItem('idC', result.id_empresa)
-          window.location.href = '/Front/html/home.html'
+          window.location.href = '../app/inicio/page.jsx'
         } else {
           alert(result.message || 'Ocorreu um erro inesperado.')
         }
