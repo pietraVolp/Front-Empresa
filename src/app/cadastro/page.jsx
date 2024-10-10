@@ -1,6 +1,7 @@
 "use client"; // Adiciona esta linha para tornar o componente um Client Component
 import React from 'react';
 import "../../styles/globals.css";
+import "../../js/cadastro.js"
 
 const Cadastro = () => {
     return (

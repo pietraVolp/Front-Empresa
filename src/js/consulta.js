@@ -2,32 +2,29 @@
 
 document.addEventListener('DOMContentLoaded', () => {
   // Obtém os elementos do DOM
-  const nome = document.getElementById('nome')
-  const email = document.getElementById('email')
-  const senha = document.getElementById('senha')
-  const crm = document.getElementById('crm')
-  const telefone = document.getElementById('telefone')
-  const dataNascimento = document.getElementById('dataNascimento')
-  const especialidades = document.getElementById('especialidades')
+  const medico = document.getElementById('medico')
+  const especialidade = document.getElementById('especialidade')
+  const detalhes = document.getElementById('detalhes')
+  const data = document.getElementById('date')
+  const horario = document.getElementById('horario')
   const cadastro = document.getElementById('cadastro')
-
+ 
 
   // Verifica se o botão foi encontrado
   if (cadastro) {
     cadastro.addEventListener('click', async () => {
       const userData = {
-        nome: nome.value,
-        email: email.value,
-        senha: senha.value,
-        crm: crm.value,
-        telefone: telefone.value,
-        data_nascimento: dataNascimento.value,
-        especialidades: especialidades.value
+        p_nome_medico:        medico.value,
+        p_nome_especialidade: especialidade.value,
+        p_detalhes_consulta:  detalhes.value,
+        p_dias_consulta:      data.value,
+        p_horas_consulta:     horario.value,
+       
        
       }
 
       try {
-        const response = await fetch('http://localhost:8080/v1/vital/medico', {
+        const response = await fetch('http://localhost:8080/v1/vital/consulta', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
@@ -39,9 +36,9 @@ document.addEventListener('DOMContentLoaded', () => {
         // Verifica o código de status da resposta
         if (response.ok) {
           const result = await response.json()
-          alert('Médico cadastrado com sucesso!')
+          alert('Consulta cadastrado com sucesso!')
           console.log(result)
-          window.location.href = '/Front/html/medicos.html'
+          window.location.href = '../app/consultas/page.jsx'
         } else {
           const result = await response.json()
           alert(`Erro: ${result.message}`)
@@ -55,3 +52,5 @@ document.addEventListener('DOMContentLoaded', () => {
     console.error('O botão de cadastro não foi encontrado no DOM')
   }
 })
+
+
