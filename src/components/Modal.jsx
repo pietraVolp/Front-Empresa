@@ -1,5 +1,6 @@
 'use'
 import React from "react";
+import CadastroConsulta from "@/js/cadastroConsulta";
 
 export default function Modal({isOpen,  setModalOpen}){
   if(isOpen){
@@ -21,16 +22,20 @@ export default function Modal({isOpen,  setModalOpen}){
                 className="shadow-2xl w-96 h-12 text-base border border-gray-300 rounded-lg p-3 focus:outline-none focus:ring-2 focus:ring-blue-500"
                 placeholder="selecione..."
               >
-                <option value="1" disabled>
+                <option value="" disabled>
                   Selecione...
                 </option>
-                <option value="2">Dermatologista</option>
-                <option value="3">Nutricionista</option>
-                <option value="4">Cardiologista</option>
-                <option value="5">Psicólogo</option>
-                <option value="6">Clínico</option>
+                <option value="">Dermatologista</option>
+                <option value="">Nutricionista</option>
+                <option value="">Cardiologista</option>
+                <option value="">Psicologo</option>
+                <option value="">Clínico</option>
               </select>
             </div>
+
+
+
+
 
             <div className="ml-12 mt-1">
               <label htmlFor="medico" className="block text-stone-500 text-base font-sans mb-2 text-lg">
@@ -41,15 +46,20 @@ export default function Modal({isOpen,  setModalOpen}){
                 className="shadow-2xl w-96 h-12 text-base border border-gray-300 rounded-lg p-3 focus:outline-none focus:ring-2 focus:ring-blue-500"
                 placeholder="selecione..."
               >
-                <option value="1" disabled>
+                <option value="" disabled>
                 selecione...
                 </option>
-                <option value="2">Maria</option>
-                <option value="3">Julia</option>
-                <option value="4">Augusto</option>
+                <option value="">Maria</option>
+                <option value="">Julia</option>
+                <option value="">Augusto</option>
               </select>
             </div>
           </div>
+
+
+
+
+
 
           <div className="flex">
             <div className="ml-10 mt-1">
@@ -64,6 +74,12 @@ export default function Modal({isOpen,  setModalOpen}){
               />
             </div>
 
+
+
+
+
+
+
             <div className="ml-14 mt-1">
               <label htmlFor="detalhes" className="block text-stone-500 text-base font-sans mb-2 text-lg">
                 Detalhes da consulta*
@@ -76,6 +92,11 @@ export default function Modal({isOpen,  setModalOpen}){
               />
             </div>
           </div>
+
+
+
+
+
 
           <div className="flex">
             <div className="ml-10 mt-1">
@@ -90,16 +111,27 @@ export default function Modal({isOpen,  setModalOpen}){
               />
             </div>
 
+
+
+
+
+
             <div className="ml-20 mt-10">
               <button
-                onClick={() => setModalOpen(false)} // Fecha o modal
+              id="cadastro"
+              
                 className="bg-blue-300 w-72 text-blue-950 font-bold px-4 py-2 rounded-lg hover:bg-blue-900"
               >
                 CADASTRAR
               </button>
+
+
+
+
             </div>
           </div>
         </div>
+        <CadastroConsulta/>
       </div>
     );
   }

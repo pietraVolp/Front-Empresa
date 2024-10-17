@@ -1,6 +1,7 @@
 import NavBarLayout from "@/components/layout/NavBarLayout";
 import Image from "next/image"; // Ajuste o caminho conforme necessário
 
+
 export default function Inicio() {
     return (
         <div className="flex flex-col">

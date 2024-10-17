@@ -2,10 +2,11 @@
 
 import NavBarLayout from "@/components/layout/NavBarLayout";
 import Image from "next/image"; // Ajuste o caminho conforme necessário
-import Modal from "@/components/ConsultaModal";
+import Modal from "@/components/MedicoModal";
+import cadastro from "@/js/cadastroDoutor";
 import {useState } from "react";
 
-export default function Consulta() {
+export default function Medicos() {
     const [openModal, setOpenModal] = useState(false)
 
     return (

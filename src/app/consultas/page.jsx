@@ -2,6 +2,7 @@
 import NavBarLayout from "@/components/layout/NavBarLayout";
 import Image from "next/image"; // Ajuste o caminho conforme necessário
 import Modal from "@/components/Modal";
+import "@/js/cadastroConsulta"; 
 import {useState } from "react";
 
 

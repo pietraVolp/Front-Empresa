@@ -1,7 +1,7 @@
 'use strict'
 
 const button = document.getElementById('entrar')
-const senhaInput = document.getElementById('senha')
+
 
 
 const validarLogin = async (id) => {
@@ -41,4 +41,4 @@ const validarLogin = async (id) => {
 }
 
 
-export default validarLogin;
+
