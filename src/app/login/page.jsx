@@ -1,36 +1,48 @@
-"use client"
+"use client";
 
-import React, { useState } from 'react';
-import validarLogin from '@/js/login';
-
+import React, { useState } from "react";
 
 const Login = () => {
-  const [cnpj, setCnpj] = useState('');
-  const [senha, setSenha] = useState('');
-  const [mostrarSenha, setMostrarSenha] = useState(false);
+  const [cnpj, setCnpj] = useState("");
+  const [senha, setSenha] = useState("");
 
-  const handleToggleSenha = () => {
-    setMostrarSenha(!mostrarSenha);
-  };
+  const handleLogin = async () => {
+    if (cnpj.trim() === "" || senha.trim() === "") {
+      alert("Por favor, preencha todos os campos!");
+      return;
+    }
 
-  const handleEntrar = () => {
-    // Lógica de login
-    console.log('CNPJ:', cnpj);
-    console.log('Senha:', senha);
+    try {
+      const response = await fetch("http://localhost:8080/v1/vital/loginEmpresa", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ cnpj, senha }),
+      });
+
+      const result = await response.json();
+
+      if (response.ok && result.status_code === 200) {
+        localStorage.setItem("idC", result.id_empresa);
+        console.log(result.id_empresa);
+        window.location.href = "/inicio";
+      } else {
+        alert(result.message || "Ocorreu um erro inesperado.");
+      }
+    } catch (error) {
+      console.error(error);
+      alert("Erro ao tentar fazer login. Por favor, tente novamente.");
+    }
   };
 
   const handleCadastro = () => {
-    // Lógica de cadastro
-    console.log('Redirecionar para cadastro');
+    window.location.href = "/cadastro";
   };
 
   return (
     <div className="bg-gradient-to-r from-blue-700 to-blue-300 min-h-screen flex flex-col items-center justify-center">
-      <div>
-        <img src="./img/fundo-cadastro.png" alt="Fundo" className=" mt-[-500px] w-full relative" />
-      </div>
-
-      <div className="bg-blue-300/75 w-2/6 h-auto items-center rounded-lg mt-[350px] absolute">
+      <div className="bg-blue-300/75 w-2/6 h-auto items-center rounded-lg mt-[10px] absolute">
         <div className="ml-52 mt-10 flex">
           <img src="./img/logo.png" alt="Logo" />
           <h2 className="font-sans text-5xl text-white mt-10">Vital+</h2>
@@ -38,11 +50,13 @@ const Login = () => {
 
         <div className="ml-52">
           <h1 className="font-sans text-3xl text-blue-900 ml-3">Seja Bem-vindo!</h1>
-          <h2 className="font-bold font-sans text-3xl text-blue-900 mt-5 ml-16">LOGIN</h2>
+          <h2 className="font-bold font-sans text-3xl text-blue-900 mt-5 ml-16">
+            LOGIN
+          </h2>
         </div>
 
         <div className="mt-16 ml-32">
-          <label htmlFor="cnpj" id='cnpj' className="block text-white text-base font-sans mb-2 text-xl">
+          <label htmlFor="cnpj" className="block text-white text-base font-sans mb-2 text-xl">
             CNPJ
           </label>
           <input
@@ -53,40 +67,31 @@ const Login = () => {
             value={cnpj}
             onChange={(e) => setCnpj(e.target.value)}
           />
-          <img src="./img/empresa.png"alt="Hospital" className="absolute ml-72 mt-[-70px]" />
+          <img src="./img/empresa.png" alt="Hospital" className="absolute ml-72 mt-[-70px]" />
         </div>
 
         <div className="mt-14 ml-32">
-          <label htmlFor="senha" id='senha' className="block text-white text-base font-sans mb-2 text-xl">
+          <label htmlFor="senha" className="block text-white text-base font-sans mb-2 text-xl">
             SENHA
           </label>
           <input
-            type={mostrarSenha ? 'text' : 'password'}
+            type="password"
             id="senha"
             placeholder="Digite sua senha aqui ..."
             className="shadow-2xl w-3/4 h-16 border border-gray-300 rounded-lg p-3 focus:outline-none focus:ring-2 focus:ring-blue-500"
             value={senha}
-            onChange={(e) => setSenha(e.target.value)}
-          />
-          <img
-            id="toggleSenha"
-            src="./img/cadeado.png"
-            alt="Mostrar senha"
-            className="absolute ml-80 mt-[-33px] transform -translate-y-1/2 cursor-pointer"
-            onClick={handleToggleSenha}
+            onChange={(e) => setSenha(e.target.value)} // Correção
           />
         </div>
 
         <div className="mt-20 mb-10 ml-40">
           <button
-            id="entrar"
             className="bg-blue-900 text-white rounded-3xl w-80 h-14 text-2xl"
-            onClick={handleEntrar}
+            onClick={handleLogin} // Associando a função de login
           >
             ENTRAR
           </button>
           <button
-            id="cadastroEmpresa"
             className="bg-blue-200 text-white rounded-3xl w-60 h-8 text-base mt-4 ml-9"
             onClick={handleCadastro}
           >

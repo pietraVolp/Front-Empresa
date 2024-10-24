@@ -1,4 +1,4 @@
-'use'
+"use client";
 import React from "react";
 import CadastroDoutor from "@/js/cadastroDoutor.js"
 

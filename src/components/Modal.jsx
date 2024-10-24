@@ -1,8 +1,13 @@
 'use'
 import React from "react";
 import CadastroConsulta from "@/js/cadastroConsulta";
+import { getEspecialidade,getMedico} from '@/js/info.js'
 
 export default function Modal({isOpen,  setModalOpen}){
+
+
+  
+
   if(isOpen){
 
     return (
@@ -22,14 +27,7 @@ export default function Modal({isOpen,  setModalOpen}){
                 className="shadow-2xl w-96 h-12 text-base border border-gray-300 rounded-lg p-3 focus:outline-none focus:ring-2 focus:ring-blue-500"
                 placeholder="selecione..."
               >
-                <option value="" disabled>
-                  Selecione...
-                </option>
-                <option value="">Dermatologista</option>
-                <option value="">Nutricionista</option>
-                <option value="">Cardiologista</option>
-                <option value="">Psicologo</option>
-                <option value="">Clínico</option>
+                
               </select>
             </div>
 
@@ -46,12 +44,9 @@ export default function Modal({isOpen,  setModalOpen}){
                 className="shadow-2xl w-96 h-12 text-base border border-gray-300 rounded-lg p-3 focus:outline-none focus:ring-2 focus:ring-blue-500"
                 placeholder="selecione..."
               >
-                <option value="" disabled>
-                selecione...
+                <option disabled>
+                
                 </option>
-                <option value="">Maria</option>
-                <option value="">Julia</option>
-                <option value="">Augusto</option>
               </select>
             </div>
           </div>

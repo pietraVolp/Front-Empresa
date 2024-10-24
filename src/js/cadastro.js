@@ -1,5 +1,6 @@
 'use strict'
 
+const Cadastro = () => {
 document.addEventListener('DOMContentLoaded', () => {
   // Obtém os elementos do DOM
   const nomeEmpresa = document.getElementById('nomeEmpresa')
@@ -51,7 +52,7 @@ document.addEventListener('DOMContentLoaded', () => {
           const result = await response.json()
           alert('Usuário cadastrado com sucesso!')
           console.log(result)
-          window.location.href = '/Front/html/login.html'
+          window.location.href = '@/app/login/page.jsx'
         } else {
           const result = await response.json()
           alert(`Erro: ${result.message}`)
@@ -67,5 +68,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
 })
+}
 
-export default cadastro
+export default Cadastro
