@@ -1,81 +1,58 @@
-'use strict'
+'use strict';
 
-import  {getConsultas} from "./info.js"
+import { getConsultas } from "./info.js";
 
-function criarCard (consulta) {
-    const card = document.createElement('div')
-    const contanierConsulta = document.getElementById('contanierConsulta')
-    contanierConsulta.classList.add(
-        'w-[160px]',
-        'h-[75px]',
-        'p-[15px]',
-        'ml-[-344px]',
-        'rounded-lg',
-        'gap-x-[170px]',
-        'gap-y-[20px]',
-       
-        
+function criarCard(consulta) {
+    const card = document.createElement('div');
+    card.classList.add('w-[150px]', 'h-[73px]', 'bg-zinc-950', 'rounded-lg');
 
-        
-    )
+    const nomeMedico = document.createElement('h2');
+    nomeMedico.textContent = consulta.nome_medico;
+    nomeMedico.classList.add('text-gray-50', 'text-base', 'font-bold', 'w-[100px]');
 
-    card.classList.add(
-        'w-[150px]',
-        'h-[73px]',
-        'p-[15px]',
-        'bg-zinc-950',
-        'rounded-lg',
-    )
+    const especialidade = document.createElement('p');
+    especialidade.textContent = consulta.nome_especialidade;
+    especialidade.classList.add('text-teal-500', 'font-bold', 'text-base');
 
+    const dias = document.createElement('p');
+    dias.textContent = consulta.dias_consulta;
+    dias.classList.add('text-teal-500', 'font-bold', 'text-base');
 
-    const titulo = document.createElement('h2')
-    titulo.textContent = servico.tipo_servico
-    titulo.classList.add(
-        'text-gray-50',
-        'text-base',
-        'font-bold',
-        'w-[100px]',
-        
-            
-    )
+    const horario = document.createElement('p');
+    horario.textContent = consulta.horas_consulta;
+    horario.classList.add('text-teal-500', 'font-bold', 'text-base');
+    
 
+    card.append(nomeMedico, especialidade, dias, horario);
+    card.addEventListener('click', () => {
+        console.log(consulta);
+        window.location.href = '/info?id=' + consulta.id_consulta;
+    });
 
-    const preco = document.createElement('p')
-    preco.textContent = servico.preco
-    preco.classList.add(
-        'text-teal-500',
-        'font-bold',
-        'text-base'
-           
-        
-    )
+    return card; // Retorna apenas o card
+}
 
+async function preencherContainer() {
+    const contanierConsulta = document.getElementById('contanierConsulta');
 
-
-    card.append(titulo, preco)
-    contanierServico.appendChild(card)
-    card.addEventListener('click',()=> {
-        console.log(servico);
-        window.location.href='./info.html?id='+servico.id_servico
-    })
-
-    return card, contanierServico
-        
+    // Cria o contêiner se não existir
+    if (!contanierConsulta) {
+        const newContainer = document.createElement('div');
+        newContainer.id = 'contanierConsulta';
+        newContainer.classList.add('flex', 'flex-wrap'); // Adicione as classes que desejar
+        document.body.appendChild(newContainer);
     }
 
+    const consultas = await getConsultas();
 
-    async function preencherContainer () {
-        const container = document.querySelector('body')
+    // Acesse o contêiner que agora existe
+    const container = document.getElementById('contanierConsulta');
 
-        const servicos = await getServicos()
+    consultas.forEach(consulta => {
+        const card = criarCard(consulta);
+        container.appendChild(card);
+        console.log(card);
+    });
+}
 
-        servicos.forEach(servico =>{
-            const card = criarCard(servico)
-            container.appendChild(card)
-            console.log(card)
-
-        })
-            
-        };
-        preencherContainer ()
-    
+preencherContainer();

@@ -2,7 +2,7 @@
 import NavBarLayout from "@/components/layout/NavBarLayout";
 import Image from "next/image"; // Ajuste o caminho conforme necessário
 import Modal from "@/components/Modal";
-import "@/js/cadastroConsulta"; 
+import "@/js/cadastroConsulta";  
 import "@/js/consulta.js";
 import {useState } from "react";
 
@@ -37,7 +37,7 @@ export default function Consultas() {
                     </div>
 
 
-                        <div>
+                        <div className="mt-[600px] ml-[200px] absolute">
                             <div id="contanierConsulta" className=""></div>
                         </div>
 
