@@ -1,5 +1,5 @@
 export async function getEspecialidade(){
-    const url = `http://localhost:8080/v1/vital/especialidade`
+    const url = `https://vital-umqy.onrender.com/v1/vital/especialidade`
     const response = await fetch(url)
     const data = await response.json()
     return data.especialidades
@@ -7,8 +7,15 @@ export async function getEspecialidade(){
 
 
 export async function getMedico(){
-    const url = `http://localhost:8080/v1/vital/medico`
+    const url = `https://vital-umqy.onrender.com/v1/vital/medico`
     const response = await fetch(url)
     const data = await response.json()
     return data.medicos
+}
+
+export async function getConsultas(){
+    const url = `https://vital-umqy.onrender.com/v1/vital/consulta`
+    const response = await fetch(url)
+    const data = await response.json()
+    return data.consultas
 }

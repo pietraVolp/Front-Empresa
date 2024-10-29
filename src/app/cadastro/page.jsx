@@ -1,8 +1,11 @@
 "use client"; // Adiciona esta linha para tornar o componente um Client Component
 import React from 'react';
 import "../../styles/globals.css";
-import Cadastro from '@/js/cadastro';
+import CadastroEmpresa from '@/js/cadastro';
+import Cep from '@/js/cep';
 
+
+    
 const Cadastro = () => {
     return (
         <div className="bg-gradient-to-r from-blue-500 to-blue-300 min-h-screen">
@@ -17,7 +20,7 @@ const Cadastro = () => {
             <div className="bg-blue-300/75 w-3/5 h-auto ml-[390px] items-center rounded-lg mt-[-270px] absolute">
                 <div className="ml-96 flex">
                     <img 
-                        src="/Front/img/image 46.png" 
+                        src="./img/logo.png" 
                         alt="" 
                         className="w-24" 
                     />
@@ -89,7 +92,7 @@ const Cadastro = () => {
                             className="shadow-2xl w-[620px] h-10 border border-gray-300 rounded-lg p-3 focus:outline-none focus:ring-2 focus:ring-blue-500" 
                         />
                         <img 
-                            src="/Front/img/email.png" 
+                            src="./img/email.png" 
                             alt="" 
                             className="ml-96 pl-60 mt-[-37px] w-10" 
                         />

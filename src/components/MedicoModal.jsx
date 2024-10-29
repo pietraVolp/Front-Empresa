@@ -1,8 +1,9 @@
 "use client";
 import React from "react";
 import CadastroDoutor from "@/js/cadastroDoutor.js"
+import { getEspecialidade } from '@/js/info.js';
 
-export default function Modal({isOpen,  setModalOpen}){
+export default function Modal({isOpen,  setModalOpen,  especialidades}){
   if(isOpen){
 
     return (
@@ -96,14 +97,11 @@ export default function Modal({isOpen,  setModalOpen}){
             id="options"
             className="shadow-2xl w-96 h-12 text-base border border-gray-300 rounded-lg p-3 focus:outline-none focus:ring-2 focus:ring-blue-500"
           >
-            <option value="" disabled selected>
-              Selecione...
-            </option>
-            <option value="">Dermatologista</option>
-            <option value="">Nutricionista</option>
-            <option value="">Cardiologista</option>
-            <option value="">Psicologo</option>
-            <option value="">Clínico</option>
+           {especialidades.map((especialidade) => (
+                <option key={especialidade.id_especialidade} value={especialidade.id_especialidade}>
+                  {especialidade.nome}
+                </option>
+              ))}
           </select>
         </div>
       </div>
@@ -180,6 +178,8 @@ export default function Modal({isOpen,  setModalOpen}){
   </div>
 
     );
+
+    
   }
   
   return null

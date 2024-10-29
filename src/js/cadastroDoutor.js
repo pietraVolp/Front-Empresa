@@ -26,7 +26,7 @@ const CadastroDoutor = () => {
         };
 
         try {
-          const response = await fetch('http://localhost:8080/v1/vital/medico', {
+          const response = await fetch('http://vital-umqy.onrender.com/v1/vital/medico', {
             method: 'POST',
             headers: {
               'Content-Type': 'application/json',

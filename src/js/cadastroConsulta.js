@@ -14,8 +14,7 @@ console.log(especialidadeSelect);
     const option = document.createElement('option');
     option.value = especialidades.id_especialidade;
     option.textContent = especialidades.nome;
-    
-    especialidadeSelect.appendChild(option)
+     
     
   });
 
@@ -25,7 +24,6 @@ console.log(especialidadeSelect);
     const option = document.createElement('option');
     option.value = medicos.id_medico;
     option.textContent = medicos.nome;
-    medicoSelect.appendChild(option);
   });
 
 
