@@ -7,7 +7,13 @@ import { getConsultas } from "./info.js";
 function criarCard(consulta) {
     const card = document.createElement('div');
     card.classList.add(
+        'w-[200px]',
+        'h-[500px]',
+        'bg-zinc-200',
+        'p-7',
+        'rounded-lg',
         
+
     );
 
 
@@ -61,6 +67,7 @@ function criarCard(consulta) {
 }
 
 async function preencherContainer() {
+
     const contanierConsulta = document.getElementById('contanierConsulta');
 
     // Cria o contêiner se não existir

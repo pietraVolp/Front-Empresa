@@ -2,6 +2,9 @@
 import React, { useEffect, useState } from "react";
 import { getEspecialidade } from "@/js/info.js";
 
+
+// Resto da configuração do servidor
+
 export default function Modal({ isOpen, setModalOpen }) {
   const [especialidades, setEspecialidades] = useState([]);
   const [formData, setFormData] = useState({
@@ -35,15 +38,39 @@ export default function Modal({ isOpen, setModalOpen }) {
   };
 
   const handleSubmit = async (e) => {
-    e.preventDefault(); // Evita o comportamento padrão do formulário
+    console.table(formData);
+    //e.preventDefault(); // Evita o comportamento padrão do formulário
     try {
+      /*
       const response = await fetch('http://vital-umqy.onrender.com/v2/vital/medico', {
         method: 'POST',
+        mode: 'cors',
         headers: {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify(formData),
-      });
+      });*/
+
+      const url = 'http://vital-umqy.onrender.com/v2/vital/medico'
+  const userData = 
+    {
+      "nome": "Vinicius",
+      "email": "viniciu@gmail.com",
+      "senha": "Vini113",
+      "telefone": "11986311406",
+      "crm": "CRM8834",
+      "data_nascimento": "1980-08-10",
+      "especialidades": "OFTAMOLOGISTA"
+  
+  }
+
+
+  let response = fetch(url, {
+    method: 'POST',
+    mode: 'cors',
+    headers: {'Content-Type': 'application/json'},
+    body: JSON.stringify(userData)
+  })
 
       if (response.ok) {
         const result = await response.json();
@@ -56,7 +83,7 @@ export default function Modal({ isOpen, setModalOpen }) {
       }
     } catch (error) {
       console.error('Erro ao cadastrar usuário:', error);
-      alert('Erro ao cadastrar usuário. Tente novamente.');
+      alert('Erroooooooo ao cadastrar usuário. Tente novamente.');
     }
   };
 

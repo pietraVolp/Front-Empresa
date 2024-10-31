@@ -1,6 +1,7 @@
 import { useEffect } from 'react';
 
-const CadastroDoutor = () => {
+/*
+const CadastroDoutor = async () => {
   useEffect(() => {
     const cadastroMedico = document.getElementById('cadastro');
 
@@ -40,13 +41,15 @@ const CadastroDoutor = () => {
         };
 
         try {
+          console.log(userData)
           const response = await fetch('http://vital-umqy.onrender.com/v2/vital/medico', {
             method: 'POST',
+            mode: 'cors',
             headers: {
               'Content-Type': 'application/json',
             },
-            body: JSON.stringify(userData),
-            redirect: 'manual',
+            body: JSON.stringify(userData)
+            
           });
 
           if (response.ok) {
@@ -75,5 +78,28 @@ const CadastroDoutor = () => {
 
   return null; // Este componente serve apenas para adicionar o listener
 };
+*/
 
+const CadastroDoutor = async () => {
+  const url = 'http://vital-umqy.onrender.com/v2/vital/medico'
+  const userData = 
+    {
+      "nome": "Vinicius",
+      "email": "viniciu@gmail.com",
+      "senha": "Vini113",
+      "telefone": "11986311406",
+      "crm": "CRM8834",
+      "data_nascimento": "1980-08-10",
+      "especialidades": "OFTAMOLOGISTA"
+  
+  }
+
+
+  let response = fetch(url, {
+    method: 'POST',
+    mode: 'cors',
+    headers: {'Content-Type': 'application/json'},
+    body: JSON.stringify(userData)
+  })
+}
 export default CadastroDoutor;

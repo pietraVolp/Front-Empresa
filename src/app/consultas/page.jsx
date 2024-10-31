@@ -38,7 +38,7 @@ export default function Consultas() {
 
 
                         <div className="mt-[160px] ml-[200px] absolute p-10 ">
-                            <div id="contanierConsulta" className="bg-zinc-200 rounded-lg w-[350px] p-10" ></div>
+                            <div id="contanierConsulta"  ></div>
                         </div>
 
 
