@@ -1,32 +1,60 @@
-'use strict';
+'use strict'
 
 import { getConsultas } from "./info.js";
 
+
+
 function criarCard(consulta) {
     const card = document.createElement('div');
-    card.classList.add('w-[150px]', 'h-[73px]', 'bg-zinc-950', 'rounded-lg');
+    card.classList.add(
+        
+    );
 
-    const nomeMedico = document.createElement('h2');
-    nomeMedico.textContent = consulta.nome_medico;
-    nomeMedico.classList.add('text-gray-50', 'text-base', 'font-bold', 'w-[100px]');
 
     const especialidade = document.createElement('p');
     especialidade.textContent = consulta.nome_especialidade;
-    especialidade.classList.add('text-teal-500', 'font-bold', 'text-base');
+    especialidade.classList.add(
+        'text-blue-950',
+        'text-xl',
+        'font-bold',
+        'font-sans',
+    );
+
+    const nomeMedico = document.createElement('h2');
+    nomeMedico.textContent =  consulta.nome_medico;
+    nomeMedico.classList.add(
+        'text-blue-950', 
+        'text-lg',
+        'font-bold',
+    );
+
+
+    const detalhes = document.createElement('p');
+    detalhes.textContent = "Descrição: " + consulta.detalhes_consulta;
+    detalhes.classList.add(
+        'text-black'
+    );
+
+
 
     const dias = document.createElement('p');
-    dias.textContent = consulta.dias_consulta;
-    dias.classList.add('text-teal-500', 'font-bold', 'text-base');
+    // Tenta converter `dias_consulta` para uma data, se for possível
+    const diasData = new Date(consulta.dias_consulta); // Cria um objeto Date
+    if (!isNaN(diasData)) {
+        dias.textContent = "Dia: " + diasData.toLocaleDateString(); // Converte para o formato local
+    } else {
+        dias.textContent = "Dia: " + consulta.dias_consulta; // Se não for uma data, exibe o valor original
+    }
+    dias.classList.add('text-black');
 
     const horario = document.createElement('p');
     horario.textContent = consulta.horas_consulta;
-    horario.classList.add('text-teal-500', 'font-bold', 'text-base');
-    
+    horario.textContent = "Horário: " + consulta.horas_consulta.slice(11,19);
+    horario.classList.add('text-black');
 
-    card.append(nomeMedico, especialidade, dias, horario);
+    card.append(especialidade, nomeMedico, detalhes, dias, horario);
     card.addEventListener('click', () => {
-        console.log(consulta);
-        window.location.href = '/info?id=' + consulta.id_consulta;
+    window.location.href = '/info?id=' + consulta.id_consulta;
     });
 
     return card; // Retorna apenas o card
@@ -39,7 +67,7 @@ async function preencherContainer() {
     if (!contanierConsulta) {
         const newContainer = document.createElement('div');
         newContainer.id = 'contanierConsulta';
-        newContainer.classList.add('flex', 'flex-wrap'); // Adicione as classes que desejar
+        newContainer.classList.add(''); // Adicione as classes que desejar
         document.body.appendChild(newContainer);
     }
 
@@ -56,3 +84,4 @@ async function preencherContainer() {
 }
 
 preencherContainer();
+

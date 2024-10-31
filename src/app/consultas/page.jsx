@@ -3,7 +3,7 @@ import NavBarLayout from "@/components/layout/NavBarLayout";
 import Image from "next/image"; // Ajuste o caminho conforme necessário
 import Modal from "@/components/Modal";
 import "@/js/cadastroConsulta";  
-import "@/js/consulta.js";
+import "@/js/consulta";
 import {useState } from "react";
 
 
@@ -37,24 +37,15 @@ export default function Consultas() {
                     </div>
 
 
-                        <div className="mt-[600px] ml-[200px] absolute">
-                            <div id="contanierConsulta" className=""></div>
+                        <div className="mt-[160px] ml-[200px] absolute p-10 ">
+                            <div id="contanierConsulta" className="bg-zinc-200 rounded-lg w-[350px] p-10" ></div>
                         </div>
 
-                    {/* Div para o botao cadastrar*/}
-
-                 <div>
-                  
-                 </div>
 
 
-
-<Modal isOpen={openModal} setModalOpen={() => setOpenModal(!openModal)}/>
+                    <Modal isOpen={openModal} setModalOpen={() => setOpenModal(!openModal)}/>
    
-                    <div>
-                        <h1>Consultas</h1>
-                    </div>
-
+                    
 
 
                     {/* Aqui você pode adicionar mais conteúdo */}

@@ -7,13 +7,27 @@ const CadastroDoutor = () => {
     if (cadastroMedico) {
       cadastroMedico.addEventListener('click', async () => {
         // Obtém os elementos do DOM apenas se o evento for disparado
-        const nome = document.getElementById('nome').value;
-        const email = document.getElementById('email').value;
-        const senha = document.getElementById('senha').value;
-        const crm = document.getElementById('crm').value;
-        const telefone = document.getElementById('telefone').value;
-        const dataNascimento = document.getElementById('dataNascimento').value;
-        const especialidades = document.getElementById('options').value;
+        const nome = document.getElementById('nome')?.value || '';
+        const email = document.getElementById('email')?.value || '';
+        const senha = document.getElementById('senha')?.value || '';
+        const crm = document.getElementById('crm')?.value || '';
+        const telefone = document.getElementById('telefone')?.value || '';
+        const dataNascimento = document.getElementById('dataNascimento')?.value || '';
+
+        // Verifica se o elemento existe antes de acessar seu valor
+        let especialidades = [];
+        const optionsElement = document.getElementById('options');
+        
+        if (optionsElement) {
+          // Verifica se o select permite múltiplas escolhas e se possui opções selecionadas
+          if (optionsElement.multiple && optionsElement.selectedOptions) {
+            especialidades = Array.from(optionsElement.selectedOptions).map(option => option.value);
+          } else if (!optionsElement.multiple) {
+            especialidades = optionsElement.value ? [optionsElement.value] : [];
+          }
+        } else {
+          console.error('Elemento options não encontrado');
+        }
 
         const userData = {
           nome,
@@ -26,7 +40,7 @@ const CadastroDoutor = () => {
         };
 
         try {
-          const response = await fetch('http://vital-umqy.onrender.com/v1/vital/medico', {
+          const response = await fetch('http://vital-umqy.onrender.com/v2/vital/medico', {
             method: 'POST',
             headers: {
               'Content-Type': 'application/json',

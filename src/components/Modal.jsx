@@ -26,7 +26,7 @@ const Modal = ({ isOpen, setModalOpen, especialidades, medicos, handleCadastro }
               className="shadow-2xl w-96 h-12 text-base border border-gray-300 rounded-lg p-3 focus:outline-none focus:ring-2 focus:ring-blue-500"
             >
               {especialidades.map((especialidade) => (
-                <option key={especialidade.id_especialidade} value={especialidade.id_especialidade}>
+                <option key={especialidade.nome_especialidade} value={especialidade.nome_especialidade}>
                   {especialidade.nome}
                 </option>
               ))}
@@ -45,7 +45,7 @@ const Modal = ({ isOpen, setModalOpen, especialidades, medicos, handleCadastro }
               className="shadow-2xl w-96 h-12 text-base border border-gray-300 rounded-lg p-3 focus:outline-none focus:ring-2 focus:ring-blue-500"
             >
               {medicos.map((medico) => (
-                <option key={medico.id_medico} value={medico.id_medico}>
+                <option key={medico.nome_medico} value={medico.nome_medico}>
                   {medico.nome_medico}
                 </option>
               ))}
@@ -144,6 +144,12 @@ const CadastroConsultas = () => {
     const p_dias_consulta = document.getElementById('date').value;
     const p_horas_consulta = document.getElementById('horario').value;
 
+    // Verificação básica para garantir que todos os campos estejam preenchidos
+    if (!p_nome_medico || !p_nome_especialidade || !p_detalhes_consulta || !p_dias_consulta || !p_horas_consulta) {
+        alert('Por favor, preencha todos os campos obrigatórios.');
+        return;
+    }
+
     const userData = {
       p_nome_medico,
       p_nome_especialidade,
@@ -153,7 +159,7 @@ const CadastroConsultas = () => {
     };
 
     try {
-      const response = await fetch('https://vital-umqy.onrender.com/v1/vital/consulta', {
+      const response = await fetch('https://vital-umqy.onrender.com/v2/vital/consulta', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
