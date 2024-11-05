@@ -8,21 +8,15 @@ const card = document.createElement('div');
 const contanierConsulta = document.getElementById('contanierConsulta')
 
 
-
     contanierConsulta.classList.add(
-       'w-92'
-     
-       
-       
     
     )
 
     card.classList.add(
-        'w-[200px]',
-        'h-[500px]',
         'bg-blue-950',
-        'p-7',
         'rounded-lg',
+        'w-[300px]',
+        'h-[300px]',
         
 
     );
@@ -35,7 +29,8 @@ const contanierConsulta = document.getElementById('contanierConsulta')
         'text-xl',
         'font-bold',
         'font-sans',
-        'p-2'
+        'ml-[20px]',
+        'mt-[10px]'
     );
 
     const nomeMedico = document.createElement('h2');
@@ -44,13 +39,15 @@ const contanierConsulta = document.getElementById('contanierConsulta')
         'text-white', 
         'text-lg',
         'font-bold',
+        'ml-[20px]'
     );
 
 
     const detalhes = document.createElement('p');
     detalhes.textContent = "Descrição: " + consulta.detalhes_consulta;
     detalhes.classList.add(
-        'text-white'
+        'text-white',
+        'ml-[20px]'
     );
 
 
@@ -63,12 +60,20 @@ const contanierConsulta = document.getElementById('contanierConsulta')
     } else {
         dias.textContent = "Dia: " + consulta.dias_consulta; // Se não for uma data, exibe o valor original
     }
-    dias.classList.add('text-white');
+    dias.classList.add(
+        'text-white',
+        'ml-[20px]'
+    );
 
     const horario = document.createElement('p');
     horario.textContent = consulta.horas_consulta;
     horario.textContent = "Horário: " + consulta.horas_consulta.slice(11,19);
-    horario.classList.add('text-white');
+    horario.classList.add(
+        'text-white',
+        'ml-[20px]'
+    );
+
+    
 
     card.append(especialidade, nomeMedico, detalhes, dias, horario);
     card.addEventListener('click', () => {
