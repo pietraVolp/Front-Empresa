@@ -37,14 +37,11 @@ export default function Consultas() {
                     </div>
 
 
-                        <div className="mt-[160px] ml-[200px] absolute p-10 ">
-                            <div id="contanierConsulta"  ></div>
-                        </div>
-
-
-
                     <Modal isOpen={openModal} setModalOpen={() => setOpenModal(!openModal)}/>
    
+                        <div className=" flex mt-20 ml-[200px]  grid grid-cols-5 ">
+                            <div id="contanierConsulta" className="flex flex-wrap gap-4 w-[1100px]"  ></div>
+                        </div>
                     
 
 

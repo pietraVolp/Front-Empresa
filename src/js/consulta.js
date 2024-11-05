@@ -3,13 +3,24 @@
 import { getConsultas } from "./info.js";
 
 
-
 function criarCard(consulta) {
-    const card = document.createElement('div');
+const card = document.createElement('div');
+const contanierConsulta = document.getElementById('contanierConsulta')
+
+
+
+    contanierConsulta.classList.add(
+       'w-92'
+     
+       
+       
+    
+    )
+
     card.classList.add(
         'w-[200px]',
         'h-[500px]',
-        'bg-zinc-200',
+        'bg-blue-950',
         'p-7',
         'rounded-lg',
         
@@ -20,16 +31,17 @@ function criarCard(consulta) {
     const especialidade = document.createElement('p');
     especialidade.textContent = consulta.nome_especialidade;
     especialidade.classList.add(
-        'text-blue-950',
+        'text-white',
         'text-xl',
         'font-bold',
         'font-sans',
+        'p-2'
     );
 
     const nomeMedico = document.createElement('h2');
     nomeMedico.textContent =  consulta.nome_medico;
     nomeMedico.classList.add(
-        'text-blue-950', 
+        'text-white', 
         'text-lg',
         'font-bold',
     );
@@ -38,7 +50,7 @@ function criarCard(consulta) {
     const detalhes = document.createElement('p');
     detalhes.textContent = "Descrição: " + consulta.detalhes_consulta;
     detalhes.classList.add(
-        'text-black'
+        'text-white'
     );
 
 
@@ -51,12 +63,12 @@ function criarCard(consulta) {
     } else {
         dias.textContent = "Dia: " + consulta.dias_consulta; // Se não for uma data, exibe o valor original
     }
-    dias.classList.add('text-black');
+    dias.classList.add('text-white');
 
     const horario = document.createElement('p');
     horario.textContent = consulta.horas_consulta;
     horario.textContent = "Horário: " + consulta.horas_consulta.slice(11,19);
-    horario.classList.add('text-black');
+    horario.classList.add('text-white');
 
     card.append(especialidade, nomeMedico, detalhes, dias, horario);
     card.addEventListener('click', () => {
@@ -74,7 +86,7 @@ async function preencherContainer() {
     if (!contanierConsulta) {
         const newContainer = document.createElement('div');
         newContainer.id = 'contanierConsulta';
-        newContainer.classList.add(''); // Adicione as classes que desejar
+        // Add actual class names here if you want to style the container
         document.body.appendChild(newContainer);
     }
 

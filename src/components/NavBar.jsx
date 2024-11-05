@@ -20,7 +20,7 @@ const NavBar = () => {
     return (
         <div className="bg-[--navdestaque] text-white w-64 min-h-screen flex flex-col py-6 px-4">
             {/* Logo Vital+ */}
-            <div className="top-0 flex">
+            <div className="top-0 ">
                 <img className="h-[100px]" src="/img/logo.png" alt="Logo" />
                 <h1 className="text-3xl mt-10">Vital+</h1>
             </div>

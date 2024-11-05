@@ -29,63 +29,39 @@ export default function Modal({ isOpen, setModalOpen }) {
     fetchData();
   }, []);
 
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData({
-      ...formData,
-      [name]: value
-    });
+  const handleChange = (event) => {
+    const { name, value } = event.target;
+    setFormData((prevData) => ({
+      ...prevData,
+      [name]: value,
+    }));
   };
+  
 
   const handleSubmit = async (e) => {
-    console.table(formData);
-    //e.preventDefault(); // Evita o comportamento padrão do formulário
+    e.preventDefault();
+
+    const dadosMedico = { ...formData };
+
     try {
-      /*
       const response = await fetch('http://vital-umqy.onrender.com/v2/vital/medico', {
         method: 'POST',
-        mode: 'cors',
         headers: {
           'Content-Type': 'application/json',
+          'Accept': 'application/json',
         },
-        body: JSON.stringify(formData),
-      });*/
+        body: JSON.stringify(dadosMedico),
+      });
+      
+      if (!response.ok) throw new Error('Erro ao cadastrar médico');
+      const data = await response.json();
 
-      const url = 'http://vital-umqy.onrender.com/v2/vital/medico'
-  const userData = 
-    {
-      "nome": "Vinicius",
-      "email": "viniciu@gmail.com",
-      "senha": "Vini113",
-      "telefone": "11986311406",
-      "crm": "CRM8834",
-      "data_nascimento": "1980-08-10",
-      "especialidades": "OFTAMOLOGISTA"
-  
-  }
-
-
-  let response = fetch(url, {
-    method: 'POST',
-    mode: 'cors',
-    headers: {'Content-Type': 'application/json'},
-    body: JSON.stringify(userData)
-  })
-
-      if (response.ok) {
-        const result = await response.json();
-        alert('Médico cadastrado com sucesso!');
-        console.log(result);
-        window.location.href = '/doutores';
-      } else {
-        const result = await response.json();
-        alert(`Erro: ${result.message}`);
-      }
+      console.log('Cadastro realizado com sucesso:', data);
     } catch (error) {
       console.error('Erro ao cadastrar usuário:', error);
-      alert('Erroooooooo ao cadastrar usuário. Tente novamente.');
     }
   };
+  
 
   if (!isOpen) return null;
 
@@ -212,6 +188,7 @@ export default function Modal({ isOpen, setModalOpen }) {
 
             <div className="ml-44 mt-10">
               <button
+                type="submit" // Alterado para garantir o envio
                 id="cadastro"
                 className="bg-blue-950 text-white font-bold px-4 py-2 rounded-lg hover:bg-blue-900"
               >
