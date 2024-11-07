@@ -1,7 +1,7 @@
-"use client"; // Adiciona esta linha para tornar o componente um Client Component
+"use client"; // Indica que o componente é um Client Component
 
 import NavBarLayout from "@/components/layout/NavBarLayout";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { getConsultas } from "@/js/info";
 
 function criarCard(consulta) {
@@ -66,48 +66,56 @@ function criarCard(consulta) {
   return card;
 }
 
-
-async function preencherContainer() {
+async function preencherContainer(searchTerm) {
   const contanierConsulta = document.getElementById('contanierConsulta');
-  
-  if (!contanierConsulta) {
-    const newContainer = document.createElement('div');
-    newContainer.id = 'contanierConsulta';
-    document.body.appendChild(newContainer);
-  }
+  contanierConsulta.innerHTML = ''; // Limpa o contêiner antes de renderizar novos resultados
 
-  const consultas = await getConsultas();
-  const container = document.getElementById('contanierConsulta');
+  const consultas = searchTerm ? await buscarConsultas(searchTerm) : await getConsultas();
+
   consultas.forEach(consulta => {
     const card = criarCard(consulta);
-    container.appendChild(card);
+    contanierConsulta.appendChild(card);
   });
 }
 
+async function buscarConsultas(term) {
+  try {
+    const response = await fetch(getConsultas);
+    if (!response.ok) throw new Error("Erro ao buscar dados");
+    return await response.json();
+  } catch (error) {
+    return [];
+  }
+}
 
 export default function Inicio() {
+  const [searchTerm, setSearchTerm] = useState('');
+
   useEffect(() => {
     preencherContainer();
   }, []);
 
-
+  const handleSearch = () => {
+    preencherContainer(searchTerm);
+  };
 
   return (
     <div className="flex flex-col">
       <NavBarLayout>
         <div className="flex-1 p-4">
-          <div>
+          <div className="relative flex items-center">
             <input
               type="text"
               placeholder="Pesquisar..."
               className="bg-[--navempresa] pl-3 pr-10 py-2 ml-[60vh] mt-[50px] rounded-full w-96 h-14 border focus:border-blue-900 focus:bg-blue-5 transition-all"
+              value={searchTerm}
+              onChange={(e) => setSearchTerm(e.target.value)}
             />
-            <button>
-                <img src="./img/lupa.png" alt="" className="absolute ml-[-50px] mt-[-19px] w-7" />
+            <button onClick={handleSearch} className="absolute right-[70vh] top-[58px]">
+              <img src="./img/lupa.png" alt="Buscar" className="w-7" />
             </button>
           </div>
 
-          
           <div>
             <h1 className="text-2xl font-bold text-[--font] ml-[80px] mt-[50px]">CONSULTAS</h1>
           </div>
@@ -124,5 +132,3 @@ export default function Inicio() {
     </div>
   );
 }
-
-

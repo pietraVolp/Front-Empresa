@@ -20,7 +20,7 @@ function criarCard(consulta) {
         )
     
         card.classList.add(
-            'bg-blue-950',
+            'bg-zinc-200',
             'rounded-lg',
             'w-[300px]',
             'h-[330px]'
@@ -32,7 +32,7 @@ function criarCard(consulta) {
         const especialidade = document.createElement('p');
         especialidade.textContent = consulta.nome_especialidade;
         especialidade.classList.add(
-            'text-white',
+            'text-blue-950',
             'text-xl',
             'font-bold',
             'font-sans',
@@ -42,7 +42,7 @@ function criarCard(consulta) {
         const nomeMedico = document.createElement('h2');
         nomeMedico.textContent =  consulta.nome_medico;
         nomeMedico.classList.add(
-            'text-white', 
+            'text-blue-950', 
             'text-lg',
             'font-bold',
             'ml-[20px]'
@@ -52,7 +52,7 @@ function criarCard(consulta) {
         const detalhes = document.createElement('p');
         detalhes.textContent = "Descrição: " + consulta.detalhes_consulta;
         detalhes.classList.add(
-            'text-white',
+            'text-blue-950',
             'ml-[20px]'
         );
     
@@ -67,7 +67,7 @@ function criarCard(consulta) {
             dias.textContent = "Dia: " + consulta.dias_consulta; // Se não for uma data, exibe o valor original
         }
         dias.classList.add(
-            'text-white',
+            'text-blue-950',
             'ml-[20px]'
         );
     
@@ -75,13 +75,13 @@ function criarCard(consulta) {
         horario.textContent = consulta.horas_consulta;
         horario.textContent = "Horário: " + consulta.horas_consulta.slice(11,19);
         horario.classList.add(
-            'text-white',
+            'text-blue-950',
             'ml-[20px]'
         );
     
         card.append(especialidade, nomeMedico, detalhes, dias, horario);
         card.addEventListener('click', () => {
-        window.location.href = '/info?id=' + consulta.id_consulta;
+        window.location.href = '/ModalInfoMedico?id=' + consulta.id_consulta;
         });
     
         return card; // Retorna apenas o card
@@ -121,6 +121,7 @@ function criarCard(consulta) {
 
 export default function Consultas() {
     const [openModal, setOpenModal] = useState(false)
+    const [openModalConsulta, setOpenModalConsulta] = useState(false)
 
     
 
@@ -152,7 +153,8 @@ export default function Consultas() {
                     <Modal isOpen={openModal} setModalOpen={() => setOpenModal(!openModal)}/>
    
                         <div className=" flex mt-20 ml-[300px]  grid ">
-                            <div id="contanierConsulta" className="flex flex-wrap gap-4 w-[1100px] h-[1700px]"  ></div>
+                            <div id="contanierConsulta" className="flex flex-wrap gap-4 w-[1100px] h-[100px]"  ></div>
+                            <Modal isOpen={openModalConsulta} setModalOpen={() => setOpenModalConsulta(!openModalConsulta)}/>
                         </div>
                     
 
