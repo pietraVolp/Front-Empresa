@@ -4,6 +4,7 @@ import Image from "next/image"; // Ajuste o caminho conforme necessário
 import Modal from "@/components/Modal";
 import "@/js/cadastroConsulta";  
 import "@/js/consulta";
+import { getConsultas } from "@/js/info";
 import {useState } from "react";
 
 
@@ -139,6 +140,9 @@ export default function Consultas() {
                     <div className="relative">
                     <input type="text" placeholder="Pesquisar..."className="bg-[--navempresa] ml-[500px] pl-3 pr-10 py-2 mt-[50px] rounded-full w-96 h-14 border focus:border-blue-900 focus:bg-blue-5 transition-all" 
                     />
+                    <button>
+                        <img src="./img/lupa.png" alt="" className="absolute ml-[-50px] mt-[-19px] w-7" />
+                    </button>
                    
                     </div>
 

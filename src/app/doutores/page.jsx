@@ -5,6 +5,7 @@ import Image from "next/image"; // Ajuste o caminho conforme necessário
 import Modal from "@/components/MedicoModal";
 import cadastro from "@/js/cadastroDoutor";
 import "@/js/doutores.js"
+import { getMedico } from "@/js/info";
 import {useState } from "react";
 
 
@@ -100,7 +101,9 @@ export default function Medicos() {
                     <div className="relative">
                     <input type="text" placeholder="Pesquisar..."className="bg-[--navempresa] pl-3 pr-10 py-2 ml-[400px] mt-[50px] rounded-full w-96 h-14 border focus:border-blue-900 focus:bg-blue-5 transition-all" 
                     />
-                   
+                     <button>
+                        <img src="./img/lupa.png" alt="" className="absolute ml-[-50px] mt-[-19px] w-7" />
+                    </button>
                     </div>
 
                     </div>
@@ -119,7 +122,7 @@ export default function Medicos() {
                  <Modal isOpen={openModal} setModalOpen={() => setOpenModal(!openModal)}/>
 
 
-                     <div className=" mt-20 ml-[300px] ">
+                     <div className=" mt-20 ml-[300px] grid ">
                             <div id="contanierMedico" className="gap-4 w-[1100px] h-[1700px]"  ></div>
                         </div>
                     
