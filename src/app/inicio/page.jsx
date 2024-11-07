@@ -72,18 +72,24 @@ async function preencherContainer(searchTerm) {
 
   const consultas = searchTerm ? await buscarConsultas(searchTerm) : await getConsultas();
 
-  consultas.forEach(consulta => {
-    const card = criarCard(consulta);
-    contanierConsulta.appendChild(card);
-  });
+  // Verifica se `consultas` é um array antes de usar `forEach`
+  if (Array.isArray(consultas)) {
+    consultas.forEach(consulta => {
+      const card = criarCard(consulta);
+      contanierConsulta.appendChild(card);
+    });
+  } else {
+    console.error("Erro: `consultas` não é um array.");
+  }
 }
 
 async function buscarConsultas(term) {
   try {
-    const response = await fetch(getConsultas);
+    const response = await fetch(getConsultas());
     if (!response.ok) throw new Error("Erro ao buscar dados");
     return await response.json();
   } catch (error) {
+    console.error("Erro ao buscar consultas:", error);
     return [];
   }
 }
