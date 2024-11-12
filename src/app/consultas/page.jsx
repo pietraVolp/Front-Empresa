@@ -2,7 +2,7 @@
 import NavBarLayout from "@/components/layout/NavBarLayout";
 import Modal from "@/components/Modal";
 import { getConsultas } from "@/js/info";
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 
 function criarCard(consulta) {
     const card = document.createElement('div');
@@ -31,39 +31,36 @@ function criarCard(consulta) {
 
     card.append(especialidade, nomeMedico, detalhes, dias, horario);
     card.addEventListener('click', () => {
-        window.location.href = '/ModalInfoMedico?id=' + consulta.id_consulta;
+        window.location.href = '/infoConsulta?id=' + consulta.id_consulta;
     });
 
     return card;
 }
 
-async function preencherContainer() {
-    const contanierConsulta = document.getElementById('contanierConsulta');
-    
-    if (!contanierConsulta) {
-        const newContainer = document.createElement('div');
-        newContainer.id = 'contanierConsulta';
-        document.body.appendChild(newContainer);
-    }
-
-    const consultas = await getConsultas();
-    
-    // Verifica se `consultas` é um array antes de usar `forEach`
-    if (Array.isArray(consultas)) {
-        consultas.forEach(consulta => {
-            const card = criarCard(consulta);
-            contanierConsulta.appendChild(card);
-        });
-    } else {
-        console.error("Erro: `consultas` não é um array.", consultas);
-    }
-}
-
-preencherContainer();
-
-export default function Consultas() {
+function Consultas() {
     const [openModal, setOpenModal] = useState(false);
-    const [openModalConsulta, setOpenModalConsulta] = useState(false);
+    const contanierConsultaRef = useRef(null);
+
+    useEffect(() => {
+        async function preencherContainer() {
+            const contanierConsulta = contanierConsultaRef.current;
+
+            if (!contanierConsulta) return;
+
+            const consultas = await getConsultas();
+
+            if (Array.isArray(consultas)) {
+                consultas.forEach(consulta => {
+                    const card = criarCard(consulta);
+                    contanierConsulta.appendChild(card);
+                });
+            } else {
+                console.error("Erro: `consultas` não é um array.", consultas);
+            }
+        }
+
+        preencherContainer();
+    }, []);
 
     return (
         <div className="flex flex-col">
@@ -83,13 +80,15 @@ export default function Consultas() {
 
                     <div className="flex mt-20 ml-[300px] grid">
                         <div
-                        id="contanierConsulta"
-                        className="flex flex-wrap gap-4 w-[1100px] h-[100px]"></div>
-                        
+                            id="contanierConsulta"
+                            ref={contanierConsultaRef}
+                            className="flex flex-wrap gap-4 w-[1100px] h-[100px]">
+                        </div>
                     </div>
                 </div>
             </NavBarLayout>
         </div>
     );
 }
-  
+
+export default Consultas;
