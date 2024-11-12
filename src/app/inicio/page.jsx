@@ -127,11 +127,11 @@ export default function Inicio() {
           </div>
 
           <div className="flex mt-10 ml-[80px] grid overflow-x-scroll">
-            <div id="contanierConsulta" className="flex space-x-4 gap-4 w-[1100px] h-[260px]"></div>
+            <div id="contanierConsulta" className="flex space-x-4 gap-4 w-[1100px] h-[230px]"></div>
           </div>
 
           <div>
-            <h1 className="text-2xl font-bold text-[--font] ml-[80px]">GALERIA</h1>
+            <h1 className="text-2xl font-bold text-[--font] ml-[80px] mt-[50px]">GALERIA</h1>
           </div>
         </div>
       </NavBarLayout>

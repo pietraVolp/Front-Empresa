@@ -82,8 +82,10 @@ export default function Consultas() {
                     <Modal isOpen={openModal} setModalOpen={() => setOpenModal(!openModal)} />
 
                     <div className="flex mt-20 ml-[300px] grid">
-                        <div id="contanierConsulta" className="flex flex-wrap gap-4 w-[1100px] h-[100px]"></div>
-                        <Modal isOpen={openModalConsulta} setModalOpen={() => setOpenModalConsulta(!openModalConsulta)} />
+                        <div
+                        id="contanierConsulta"
+                        className="flex flex-wrap gap-4 w-[1100px] h-[100px]"></div>
+                        
                     </div>
                 </div>
             </NavBarLayout>
