@@ -29,7 +29,7 @@ const CadastroEmpresa = () => {
   // Função de cadastro ao clicar no botão
   const handleCadastro = async () => {
     try {
-      const response = await fetch('http://localhost:8080/v1/vital/empresa', {
+      const response = await fetch('http://vital-umqy.onrender.com/v1/vital/empresa', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
