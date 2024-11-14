@@ -29,7 +29,7 @@ const CadastroEmpresa = () => {
 
     const handleCadastro = async () => {
         try {
-            const response = await fetch('https://vital-zi3b.onrender.com/v2/vital/empresa', {
+            const response = await fetch('https://vital-back-geh2haera4f5hzfb.brazilsouth-01.azurewebsites.net/v2/vital/empresa', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

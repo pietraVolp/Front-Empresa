@@ -13,7 +13,7 @@ const Login = () => {
     }
 
     try {
-      const response = await fetch("http://vital-zi3b.onrender.com/v1/vital/loginEmpresa", {
+      const response = await fetch("https://vital-back-geh2haera4f5hzfb.brazilsouth-01.azurewebsites.net/v1/vital/loginEmpresa", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

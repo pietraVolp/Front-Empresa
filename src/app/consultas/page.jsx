@@ -49,14 +49,18 @@ function Consultas() {
 
             const consultas = await getConsultas();
 
+            // Verifique se `consultas` é definido e se é um array antes de usar `.forEach`
             if (Array.isArray(consultas)) {
                 consultas.forEach(consulta => {
                     const card = criarCard(consulta);
                     contanierConsulta.appendChild(card);
                 });
+            } else if (consultas === undefined) {
+                console.error("Erro: `consultas` é `undefined`.");
             } else {
                 console.error("Erro: `consultas` não é um array.", consultas);
             }
+            
         }
 
         preencherContainer();
