@@ -10,7 +10,9 @@ const CadastroDoutor = () => {
     const senha = document.getElementById('senha')?.value || '';
     const crm = document.getElementById('crm')?.value || '';
     const telefone = document.getElementById('telefone')?.value || '';
-    const dataNascimento = document.getElementById('dataNascimento')?.value || '';
+    const data_nascimento = document.getElementById('dataNascimento')?.value || '';
+    const foto_medico = document.getElementById('fotoMedico')?.value || '';
+    const descricao = document.getElementById('descricao')?.value || '';
 
     let especialidades = [];
     const optionsElement = document.getElementById('options');
@@ -31,13 +33,15 @@ const CadastroDoutor = () => {
       senha,
       crm,
       telefone,
-      data_nascimento: dataNascimento,
+      data_nascimento,
+      foto_medico,
       especialidades,
+      descricao
     };
 
     try {
       console.log(userData);
-      const response = await fetch('http://vital-umqy.onrender.com/v2/vital/medico', {
+      const response = await fetch('https://vital-back-geh2haera4f5hzfb.brazilsouth-01.azurewebsites.net/v2/vital/medico', {
         method: 'POST',
         mode: 'cors',
         headers: {

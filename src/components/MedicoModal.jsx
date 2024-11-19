@@ -3,18 +3,20 @@ import React, { useEffect, useState } from "react";
 import { getEspecialidade } from "@/js/info.js";
 
 
-// Resto da configuração do servidor
-
-export default function Modal({ isOpen, setModalOpen }) {
+export default function Modal({ isOpen, setModalOpen, handleCadastro}) {
+  if (!isOpen) return null;
   const [especialidades, setEspecialidades] = useState([]);
+  const [isModalOpen, setModalOpen] = useState(false);
   const [formData, setFormData] = useState({
     nome: '',
     email: '',
+    telefone: '',
     senha: '',
     crm: '',
-    telefone: '',
-    dataNascimento: '',
-    especialidade: ''
+    data_nascimento: '',
+    especialidades: '',
+    foto_medico: '',
+    descricao: ''
   });
 
   useEffect(() => {
@@ -41,43 +43,45 @@ export default function Modal({ isOpen, setModalOpen }) {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    const dadosMedico = { ...formData };
+    const dados_medico = { ...formData};
 
     try {
-      const response = await fetch('http://vital-umqy.onrender.com/v2/vital/medico', {
+      const response = await fetch('https://vital-back-geh2haera4f5hzfb.brazilsouth-01.azurewebsites.net/v2/vital/medico', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
           'Accept': 'application/json',
         },
-        body: JSON.stringify(dadosMedico),
+        body: JSON.stringify(dados_medico),
       });
-      
-      if (!response.ok) throw new Error('Erro ao cadastrar médico');
-      const data = await response.json();
 
-      console.log('Cadastro realizado com sucesso:', data);
+     if (response.ok) {
+        alert('Médico cadastrada com sucesso!');
+       window.location.href = '/doutores';
+       } else {
+      const result = await response.json();
+        alert(`Erro: ${result.message}`);
+     }
     } catch (error) {
-      console.error('Erro ao cadastrar usuário:', error);
+      console.error('Erro ao cadastrar consulta:', error);
+      alert('Erro ao cadastrar consulta. Tente novamente.');
+    
     }
-  };
-  
-
-  if (!isOpen) return null;
 
   return (
     <div id="modal" className="fixed inset-0 bg-gray-900 bg-opacity-50 flex items-center justify-center">
-      <div className="bg-white p-6 rounded-lg shadow-lg w-2/4 h-3/6">
-        <h2 className="font-bold text-3xl text-blue-950 font-sans mb-4 flex items-center justify-center">
+      <div className="bg-white p-6 rounded-lg shadow-lg w-2/4 h-2/3">
+        <h2 className="font-bold text-3xl text-blue-950 font-sans mb-2 flex items-center justify-center">
           CADASTRAR DOUTOR
         </h2>
         <form onSubmit={handleSubmit}>
-          <div className="flex">
+          <div className="flex mt-10">
             <div className="ml-10">
-              <label htmlFor="nome" className="block text-stone-500 text-base font-sans mb-2 text-lg">
+              <label htmlFor="nome"  className="block text-stone-500 text-base font-sans mb-2 text-lg">
                 Nome*
               </label>
               <input
+              id="nome" 
                 type="text"
                 name="nome"
                 value={formData.nome}
@@ -93,6 +97,7 @@ export default function Modal({ isOpen, setModalOpen }) {
                 Telefone
               </label>
               <input
+               id="telefone"
                 type="tel"
                 name="telefone"
                 value={formData.telefone}
@@ -110,6 +115,7 @@ export default function Modal({ isOpen, setModalOpen }) {
                 Email*
               </label>
               <input
+              id="email" 
                 type="email"
                 name="email"
                 value={formData.email}
@@ -121,19 +127,19 @@ export default function Modal({ isOpen, setModalOpen }) {
             </div>
 
             <div className="ml-12 mt-1">
-              <label htmlFor="options" className="block text-stone-500 text-base font-sans mb-2 text-lg">
+              <label htmlFor="options"  className="block text-stone-500 text-base font-sans mb-2 text-lg">
                 Escolha uma opção:
               </label>
               <select
                 id="options"
-                name="especialidade"
-                value={formData.especialidade}
+                name="especialidades"
+                value={formData.especialidades}
                 onChange={handleChange}
                 className="shadow-2xl w-96 h-12 text-base border border-gray-300 rounded-lg p-3 focus:outline-none focus:ring-2 focus:ring-blue-500"
               >
-                {especialidades.map((especialidade) => (
-                  <option key={especialidade.nome} value={especialidade.nome}>
-                    {especialidade.nome}
+                {especialidades.map((especialidades) => (
+                  <option key={especialidades.nome} value={especialidades.nome}>
+                    {especialidades.nome}
                   </option>
                 ))}
               </select>
@@ -146,6 +152,7 @@ export default function Modal({ isOpen, setModalOpen }) {
                 Senha*
               </label>
               <input
+              id="senha"
                 type="password"
                 name="senha"
                 value={formData.senha}
@@ -161,9 +168,10 @@ export default function Modal({ isOpen, setModalOpen }) {
                 Data de Nascimento
               </label>
               <input
+              id="dataNascimento"
                 type="date"
-                name="dataNascimento"
-                value={formData.dataNascimento}
+                name="data_nascimento"
+                value={formData.data_nascimento}
                 onChange={handleChange}
                 className="shadow-2xl w-96 h-12 text-blue-950 text-base border border-gray-300 rounded-lg p-3 focus:outline-none focus:ring-2 focus:ring-blue-500"
               />
@@ -176,6 +184,7 @@ export default function Modal({ isOpen, setModalOpen }) {
                 CRM*
               </label>
               <input
+              id="crm"
                 type="text"
                 name="crm"
                 value={formData.crm}
@@ -186,18 +195,65 @@ export default function Modal({ isOpen, setModalOpen }) {
               <img src="./img/identificacao.png" alt="Ícone CRM" className="ml-80 mt-[-35px] w-8" />
             </div>
 
-            <div className="ml-44 mt-10">
+            <div className="ml-10 mt-1">
+              <label htmlFor="crm" className="block text-stone-500 text-base font-sans mb-2 text-lg">
+                Foto Médico*
+              </label>
+              <input
+              id="fotoMedico"
+                type="text"
+                name="foto_medico"
+                value={formData.foto_medico}
+                onChange={handleChange}
+                placeholder="img.com"
+                className="shadow-2xl w-96 h-12 text-base border border-gray-300 rounded-lg p-3 focus:outline-none focus:ring-2 focus:ring-blue-500"
+              />
+              
+            </div>
+
+          </div>
+
+  
+
+            <div className="flex mt-3">
+            <div className="ml-10 mt-1">
+              <label htmlFor="descricao" className="block text-stone-500 text-base font-sans mb-2 text-lg">
+                Descrição*
+              </label>
+              <input
+              id="descricao"
+                type="text"
+                name="descricao"
+                value={formData.descricao}
+                onChange={handleChange}
+                placeholder="descrição"
+                className="shadow-2xl w-96 h-12 text-base border border-gray-300 rounded-lg p-3 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                />
+             
+            </div>
+
+            <div className="ml-40 mt-[40px]">
               <button
                 type="submit" // Alterado para garantir o envio
                 id="cadastro"
-                className="bg-blue-950 text-white font-bold px-4 py-2 rounded-lg hover:bg-blue-900"
-              >
+                onClick={handleCadastro}
+                className="bg-blue-950 text-white font-bold px-5 py-2 rounded-lg hover:bg-blue-900"
+                >
                 CADASTRAR
               </button>
             </div>
           </div>
         </form>
       </div>
+      <Modal 
+        isOpen={isModalOpen} 
+        setModalOpen={setModalOpen} 
+        especialidades={especialidades} 
+        handleCadastro={handleCadastro}
+      />
     </div>
+
+    
   );
+}
 }

@@ -50,20 +50,32 @@ export default function Medicos() {
     useEffect(() => {
         async function preencherContainer() {
             const contanierMedico = document.getElementById('contanierMedico');
-
-            if (!contanierMedico) return;
-
-            const medicos = await getMedico();
-
-            medicos.forEach(medico => {
-                const card = criarCard(medico);
-                contanierMedico.appendChild(card);
-            });
+    
+            if (!contanierMedico) {
+                console.error('Elemento contanierMedico não encontrado.');
+                return;
+            }
+    
+            try {
+                const medicos = await getMedico();
+                console.log('Médicos recebidos:', medicos);
+    
+                if (Array.isArray(medicos)) {
+                    medicos.forEach(medico => {
+                        const card = criarCard(medico);
+                        contanierMedico.appendChild(card);
+                    });
+                } else {
+                    console.error('getMedico não retornou um array:', medicos);
+                }
+            } catch (error) {
+                console.error('Erro ao preencher o container:', error);
+            }
         }
-
-        // Chama a função preencherContainer somente no cliente
+    
         preencherContainer();
     }, []);
+    
 
     return (
         <div className="flex flex-col">
