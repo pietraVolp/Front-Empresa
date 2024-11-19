@@ -51,9 +51,7 @@ const CadastroDoutor = () => {
       });
 
       if (response.ok) {
-        const result = await response.json();
         alert('Médico cadastrado com sucesso!');
-        console.log(result);
         window.location.href = '/doutores';
       } else {
         const result = await response.json();

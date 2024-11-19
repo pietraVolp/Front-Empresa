@@ -1,12 +1,10 @@
 "use client";
+
 import React, { useEffect, useState } from "react";
 import { getEspecialidade } from "@/js/info.js";
 
-
-export default function Modal({ isOpen, setModalOpen, handleCadastro}) {
-  if (!isOpen) return null;
+export default function Modal({ isOpen, setModalOpen }) {
   const [especialidades, setEspecialidades] = useState([]);
-  const [isModalOpen, setModalOpen] = useState(false);
   const [formData, setFormData] = useState({
     nome: '',
     email: '',
@@ -38,35 +36,36 @@ export default function Modal({ isOpen, setModalOpen, handleCadastro}) {
       [name]: value,
     }));
   };
-  
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    const dados_medico = { ...formData};
+    const dados_medico = { ...formData };
 
     try {
       const response = await fetch('https://vital-back-geh2haera4f5hzfb.brazilsouth-01.azurewebsites.net/v2/vital/medico', {
         method: 'POST',
+        mode: 'cors',
         headers: {
           'Content-Type': 'application/json',
-          'Accept': 'application/json',
         },
         body: JSON.stringify(dados_medico),
       });
 
-     if (response.ok) {
-        alert('Médico cadastrada com sucesso!');
-       window.location.href = '/doutores';
-       } else {
-      const result = await response.json();
+      if (response.ok) {
+        alert('Médico cadastrado com sucesso!');
+        window.location.href = '/doutores';
+      } else {
+        const result = await response.json();
         alert(`Erro: ${result.message}`);
-     }
+      }
     } catch (error) {
-      console.error('Erro ao cadastrar consulta:', error);
-      alert('Erro ao cadastrar consulta. Tente novamente.');
-    
+      console.error('Erro ao cadastrar usuário:', error);
+      alert('Erro ao cadastrar usuário. Tente novamente.');
     }
+  };
+
+  if (!isOpen) return null;
 
   return (
     <div id="modal" className="fixed inset-0 bg-gray-900 bg-opacity-50 flex items-center justify-center">
@@ -234,9 +233,8 @@ export default function Modal({ isOpen, setModalOpen, handleCadastro}) {
 
             <div className="ml-40 mt-[40px]">
               <button
-                type="submit" // Alterado para garantir o envio
+                type="submit" 
                 id="cadastro"
-                onClick={handleCadastro}
                 className="bg-blue-950 text-white font-bold px-5 py-2 rounded-lg hover:bg-blue-900"
                 >
                 CADASTRAR
@@ -245,15 +243,6 @@ export default function Modal({ isOpen, setModalOpen, handleCadastro}) {
           </div>
         </form>
       </div>
-      <Modal 
-        isOpen={isModalOpen} 
-        setModalOpen={setModalOpen} 
-        especialidades={especialidades} 
-        handleCadastro={handleCadastro}
-      />
     </div>
-
-    
   );
-}
 }
