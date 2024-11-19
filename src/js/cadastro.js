@@ -3,13 +3,13 @@ import React, { useState } from 'react';
 
 const CadastroEmpresa = () => {
   const [formData, setFormData] = useState({
-    nomeEmpresa: '',
-    nomeProprietario: '',
+    nome_empresa: '',
+    nome_proprietario: '',
     email: '',
     senha: '',
     cnpj: '',
     telefone: '',
-    telefoneClinica: '',
+    telefone_clinica: '',
     cep: '',
     logradouro: '',
     bairro: '',
@@ -29,7 +29,7 @@ const CadastroEmpresa = () => {
   // Função de cadastro ao clicar no botão
   const handleCadastro = async () => {
     try {
-      const response = await fetch('http://vital-umqy.onrender.com/v1/vital/empresa', {
+      const response = await fetch('https://vital-back-geh2haera4f5hzfb.brazilsouth-01.azurewebsites.net/v1/vital/empresa', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

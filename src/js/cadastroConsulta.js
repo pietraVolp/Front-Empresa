@@ -58,7 +58,7 @@ const CadastroConsulta = () => {
         };
 
         try {
-          const response = await fetch('http://vital-umqy.onrender.com/v2/vital/consulta', {
+          const response = await fetch('https://vital-back-geh2haera4f5hzfb.brazilsouth-01.azurewebsites.net/v2/vital/consulta', {
             method: 'POST',
             headers: {
               'Content-Type': 'application/json',

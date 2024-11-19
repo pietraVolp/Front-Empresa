@@ -12,7 +12,7 @@ document.addEventListener('DOMContentLoaded', () => {
       alert('Por favor, preencha todos os campos!')
     } else {
       try {
-        const response = await fetch('http://localhost:8080/v1/vital/loginEmpresa', {
+        const response = await fetch('https://vital-back-geh2haera4f5hzfb.brazilsouth-01.azurewebsites.net/v1/vital/loginEmpresa', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
